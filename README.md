@@ -1,7 +1,10 @@
-# Installation on Debian Stretch
-## NodeRed
-`apt-get install nodered`
-`sudo systemctl enable nodered.service`
+# Installation on Debian Stretch
+## Node-RED
+```bash
+sudo apt-get update
+sudo apt-get install nodered
+sudo systemctl enable nodered.service
+```
 
 For I2C & InfluxDB modules:
 ```bash
@@ -10,7 +13,7 @@ sudo npm install -g node-red-contrib-influxdb node-red-contrib-i2c
 sudo service nodered restart
 ```
 
-## Grafana
+## Grafana
 ```bash
 sudo apt-get install apt-transport-https curl
 curl https://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
@@ -19,10 +22,9 @@ sudo apt-get update
 sudo apt-get install grafana
 ```
 
-## InfluxDB
+## InfluxDB
 ```bash
 sudo apt-get update
-sudo apt-get upgrade
 sudo apt-get install apt-transport-https
 sudo apt-get install curl
 curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
@@ -31,24 +33,26 @@ sudo apt-get update
 sudo apt-get install influxdb
 ```
 
-# Configuration
-## InfluxDB
+# Configuration
+## InfluxDB
 ```bash
 influx
 create database probes;
 create user grafana with password 'grafana' with all privileges;
 ```
 
-## Grafana
-Accessing Grafana (login: admin/admin): http://raspberrypi.local:3000/
+## Grafana
+Accessing Grafana (default login: admin/admin): http://raspberrypi.local:3000/
+
 Configuration -> Data Sources -> Add data source
+
 - Type: InfluxDB
 - HTTP/URL: http://127.0.0.1:8086/
 - HTTP/Access: Server (Default)
 - InfluxDB Details/Database; User; Password: according to influxDB configuration
 
-## Nodered
-Accessing Nodered: http://raspberrypi.local:1880/
+## Node-RED
+Accessing Node-RED: http://raspberrypi.local:1880/
 
 # References
 https://bentek.fr/influxdb-grafana-raspberry-pi/
